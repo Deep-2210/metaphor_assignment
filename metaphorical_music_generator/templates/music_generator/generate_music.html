@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>Youtube video Finder</title>
+</head>
+<body>
+    <h1>Find YouTube Video</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="description">Write few words:</label>
+        <input type="text" id="description" name="description">
+        <button type="submit">Find</button>
+    </form>
+
+    <h2>Find Video:</h2>
+    <ul>
+        {% for music_piece in music_pieces %}
+            <li>Description: {{ music_piece.description }}</li>
+            <li>URL: <a href="{{ music_piece.music_notes }}">can't see video click me</a></li>
+<!--            <video controls>-->
+<!--                <source src="{{ music_piece.music_notes }}" type="video/mp4">-->
+<!--                Your browser does not support the audio element.-->
+<!--            </video>-->
+        <iframe width="640" height="360" src="{{ music_piece.music_notes }}" frameborder="0" allowfullscreen></iframe>
+
+
+
+        {% endfor %}
+    </ul>
+</body>
+</html>
